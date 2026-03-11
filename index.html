@@ -68,19 +68,64 @@
                     <h1 class="font-display text-5xl lg:text-7xl font-bold tracking-tight text-timesdark leading-[1.1] mb-6">
                         Build Organisations That <span class="text-gradient">Learn Faster</span> Than the World Changes.
                     </h1>
-                    <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                        <button class="bg-timesnavy hover:bg-[#000066] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg transform hover:-translate-y-1">
-                            Talk to Our Enterprise Team
-                        </button>
-                        <button class="bg-white border-2 border-timesslate hover:border-timesnavy text-timesnavy px-8 py-4 rounded-xl text-lg font-semibold transition-all">
-                            Explore Solutions
-                        </button>
+                    
+                    <!-- Morphing CTA Container -->
+                    <div id="cta-container" class="relative transition-all duration-500 min-h-[64px] rounded-xl overflow-hidden mt-4">
+                        <!-- Initial Buttons -->
+                        <div id="cta-buttons" class="flex flex-col sm:flex-row gap-4 absolute inset-0 transition-opacity duration-300">
+                            <button id="talk-team-btn" class="bg-timesnavy hover:bg-[#000066] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg transform hover:-translate-y-1">
+                                Talk to Our Enterprise Team
+                            </button>
+                            <button class="bg-white border-2 border-timesslate hover:border-timesnavy text-timesnavy px-8 py-4 rounded-xl text-lg font-semibold transition-all">
+                                Explore Solutions
+                            </button>
+                        </div>
+
+                        <!-- Morphed Form (Hidden initially) -->
+                        <div id="cta-form" class="bg-white border border-gray-100 rounded-xl p-6 shadow-2xl opacity-0 invisible absolute inset-0 transition-opacity duration-300 pointer-events-none">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-display font-bold text-lg text-timesdark">Let's build capability that lasts</h3>
+                                <button id="close-form-btn" class="text-gray-400 hover:text-timesred transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                </button>
+                            </div>
+                            <form class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input type="text" placeholder="Full Name" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
+                                    <input type="text" placeholder="Designation" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input type="text" placeholder="Company" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
+                                    <select class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none text-gray-500">
+                                        <option value="" disabled selected>Company Size</option>
+                                        <option value="1-50">1-50 Employees</option>
+                                        <option value="51-500">51-500 Employees</option>
+                                        <option value="500+">500+ Employees</option>
+                                    </select>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input type="email" placeholder="Work Email" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
+                                    <input type="tel" placeholder="Phone Number" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
+                                </div>
+                                <select class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none text-gray-500 mb-2">
+                                    <option value="" disabled selected>Interested Product</option>
+                                    <option value="Executive Education">Executive Education</option>
+                                    <option value="Technology & AI">Technology & AI</option>
+                                    <option value="Soft Skills & Sales">Soft Skills & Sales</option>
+                                    <option value="Leadership Academy">Leadership Academy</option>
+                                    <option value="Digital eContent">Digital eContent</option>
+                                    <option value="Signature Programmes">Signature Programmes</option>
+                                </select>
+                                <button type="button" class="w-full bg-timesred hover:bg-[#b81b21] text-white py-3 rounded-lg font-semibold transition-colors">Submit Request</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Secondary Stat Box 1 -->
-                <div class="bento-card lg:col-span-4 bg-gradient-to-br from-timesnavy to-[#000066] text-white flex flex-col justify-between">
-                    <div>
+                <!-- Secondary Stat Box 1 with Image Placeholder-->
+                <div class="bento-card lg:col-span-4 bg-gradient-to-br from-timesnavy to-[#000066] text-white flex flex-col justify-between relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600&h=400" alt="Students collaborating" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay">
+                    <div class="relative z-10">
                         <div class="text-timesslate mb-2 text-sm font-medium">Global Network</div>
                         <h3 class="text-3xl font-display font-bold">50+ Partner<br>Institutions</h3>
                     </div>
@@ -112,25 +157,25 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <p class="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-8">Trusted by 200+ leading organisations across India</p>
                 
-                <div class="marquee-container relative overflow-hidden">
-                    <div class="marquee-content flex space-x-12 items-center min-w-max">
-                        <!-- Logos populated from AWS bucket -->
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/YES_BANK_Logo_1_76f6e0c03a.svg" alt="Yes Bank" class="h-10 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_DCB_Bank_2c3f1915da.svg" alt="DCB Bank" class="h-12 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Nagpur_dfcdafbff6.svg" alt="IIM Nagpur" class="h-14 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Jammu_192cf2aa34.svg" alt="IIM Jammu" class="h-14 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Kashipur_34eb39b470.svg" alt="IIM Kashipur" class="h-14 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIT_Guwahati_c116ca417f.svg" alt="IIT Guwahati" class="h-14 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_MICA_2f3f151fe0.svg" alt="MICA" class="h-10 w-auto marquee-item">
+                <div class="marquee-container relative overflow-hidden py-4">
+                    <div class="marquee-content flex space-x-16 items-center min-w-max">
+                        <!-- Logos populated from AWS bucket - Scaled Up -->
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/YES_BANK_Logo_1_76f6e0c03a.svg" alt="Yes Bank" class="h-16 lg:h-20 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_DCB_Bank_2c3f1915da.svg" alt="DCB Bank" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Nagpur_dfcdafbff6.svg" alt="IIM Nagpur" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Jammu_192cf2aa34.svg" alt="IIM Jammu" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Kashipur_34eb39b470.svg" alt="IIM Kashipur" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIT_Guwahati_c116ca417f.svg" alt="IIT Guwahati" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_MICA_2f3f151fe0.svg" alt="MICA" class="h-16 lg:h-20 w-auto marquee-item">
                         
                         <!-- Duplicate set for seamless scrolling -->
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/YES_BANK_Logo_1_76f6e0c03a.svg" alt="Yes Bank" class="h-10 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_DCB_Bank_2c3f1915da.svg" alt="DCB Bank" class="h-12 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Nagpur_dfcdafbff6.svg" alt="IIM Nagpur" class="h-14 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Jammu_192cf2aa34.svg" alt="IIM Jammu" class="h-14 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Kashipur_34eb39b470.svg" alt="IIM Kashipur" class="h-14 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIT_Guwahati_c116ca417f.svg" alt="IIT Guwahati" class="h-14 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_MICA_2f3f151fe0.svg" alt="MICA" class="h-10 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/YES_BANK_Logo_1_76f6e0c03a.svg" alt="Yes Bank" class="h-16 lg:h-20 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_DCB_Bank_2c3f1915da.svg" alt="DCB Bank" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Nagpur_dfcdafbff6.svg" alt="IIM Nagpur" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Jammu_192cf2aa34.svg" alt="IIM Jammu" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Kashipur_34eb39b470.svg" alt="IIM Kashipur" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIT_Guwahati_c116ca417f.svg" alt="IIT Guwahati" class="h-20 lg:h-24 w-auto marquee-item">
+                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_MICA_2f3f151fe0.svg" alt="MICA" class="h-16 lg:h-20 w-auto marquee-item">
                     </div>
                 </div>
             </div>
@@ -298,8 +343,9 @@
         </section>
 
         <!-- SECTION 4: LEARNING ECOSYSTEM MODEL -->
-        <section id="ecosystem" class="py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="ecosystem" class="py-24 bg-white relative">
+            <div class="absolute inset-0 bg-timesslate/10 z-0"></div> <!-- subtle bg -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <span class="text-timesred font-semibold tracking-widest text-sm uppercase mb-3 block">Our Framework</span>
                     <h2 class="text-4xl font-display font-bold text-timesdark mb-6">A Proprietary Framework That Powers Impactful Outcomes</h2>

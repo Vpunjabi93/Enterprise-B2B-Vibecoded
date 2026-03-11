@@ -9,6 +9,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Morphing CTA Logic
+    const ctaContainer = document.getElementById('cta-container');
+    const ctaButtons = document.getElementById('cta-buttons');
+    const ctaForm = document.getElementById('cta-form');
+    const talkTeamBtn = document.getElementById('talk-team-btn');
+    const closeFormBtn = document.getElementById('close-form-btn');
+
+    if(talkTeamBtn && ctaForm) {
+        talkTeamBtn.addEventListener('click', () => {
+            // Expand container height dynamically
+            ctaContainer.style.height = ctaForm.scrollHeight + 'px';
+            
+            // Fade out buttons
+            ctaButtons.classList.add('opacity-0');
+            setTimeout(() => {
+                ctaButtons.style.display = 'none';
+                
+                // Show form
+                ctaForm.classList.remove('invisible', 'opacity-0', 'pointer-events-none');
+            }, 300);
+        });
+
+        closeFormBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Hide form
+            ctaForm.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                ctaForm.classList.add('invisible');
+                
+                // Show buttons
+                ctaButtons.style.display = 'flex';
+                // Trigger reflow
+                void ctaButtons.offsetWidth;
+                ctaButtons.classList.remove('opacity-0');
+                
+                // Reset container height
+                ctaContainer.style.height = ctaButtons.scrollHeight + 'px';
+            }, 300);
+        });
+    }
+
     // Stats Counter Animation using Intersection Observer
     const counters = document.querySelectorAll('.counter');
     const speed = 200; // The lower the slower
@@ -236,18 +277,26 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setTimeout(() => {
             contentContainer.innerHTML = `
-                <div class="text-timesred text-sm font-bold tracking-widest uppercase mb-4">Pillar 0${data.id}</div>
-                <h3 class="text-3xl font-display font-bold text-timesdark mb-4">${data.title}</h3>
-                <p class="text-xl text-gray-800 font-medium mb-6 leading-relaxed">${data.oneliner}</p>
-                <p class="text-gray-600 mb-8 leading-relaxed">${data.expanded}</p>
-                
-                <div class="space-y-4">
-                    ${data.bullets.map(b => `
-                        <div class="flex items-start">
-                            <div class="w-2 h-2 rounded-full bg-timesred mt-2 mr-4 flex-shrink-0"></div>
-                            <span class="text-gray-700 font-medium">${b}</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <div class="text-timesred text-sm font-bold tracking-widest uppercase mb-4">Pillar 0${data.id}</div>
+                        <h3 class="text-3xl font-display font-bold text-timesdark mb-4">${data.title}</h3>
+                        <p class="text-xl text-gray-800 font-medium mb-6 leading-relaxed">${data.oneliner}</p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">${data.expanded}</p>
+                        
+                        <div class="space-y-4">
+                            ${data.bullets.map(b => `
+                                <div class="flex items-start">
+                                    <div class="w-2 h-2 rounded-full bg-timesred mt-2 mr-4 flex-shrink-0"></div>
+                                    <span class="text-gray-700 font-medium">${b}</span>
+                                </div>
+                            `).join('')}
                         </div>
-                    `).join('')}
+                    </div>
+                    <div class="hidden md:block w-full h-full min-h-[300px] bg-gray-200 rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600&h=400" alt="Learning Framework" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-timesnavy/10 mix-blend-multiply"></div>
+                    </div>
                 </div>
             `;
             // Fade in new content
