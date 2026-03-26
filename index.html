@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimesPro | Enterprise Learning Ecosystem</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TimesPro Enterprise | Custom Learning Programmes for India's Leading Organisations</title>
+    <meta name="description" content="TimesPro Enterprise Learning — Custom MDPs, Bespoke Learning Solutions, and Executive Education backed by IIMs, IITs, and global institutions. Built for India's leading organisations." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -19,376 +21,1147 @@
                         timesred: '#DA2128',
                         timesnavy: '#00008C',
                         timesslate: '#D6D6E7',
-                        timesdark: '#1C1D1F'
+                        timesdark: '#1C1D1F',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
+                        body: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
                 }
             }
         }
     </script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- Project Stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+        /* ── Mobile Nav Toggle (CSS-only) ── */
+        #nav-toggle { display: none; }
+        #nav-toggle:checked ~ .mobile-menu { max-height: 20rem; opacity: 1; }
+        .mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, opacity 0.3s ease;
+        }
+
+        /* Hamburger icon animation */
+        .hamburger span { transition: all 0.3s ease; }
+        #nav-toggle:checked ~ label .hamburger span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        #nav-toggle:checked ~ label .hamburger span:nth-child(2) { opacity: 0; }
+        #nav-toggle:checked ~ label .hamburger span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Stat counter pulse */
+        .stat-value {
+            animation: stat-pulse 3s ease-in-out infinite;
+        }
+        @keyframes stat-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+
+        /* Hero image overlay shimmer */
+        .hero-image-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,140,0.85) 0%, rgba(0,0,140,0.65) 100%);
+            border-radius: inherit;
+        }
+
+        /* ── FAQ Accordion (CSS-only) ── */
+        .faq-toggle { display: none; }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.3s ease;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .faq-toggle:checked ~ .faq-answer {
+            max-height: 300px;
+            padding-top: 0.75rem;
+            padding-bottom: 0.25rem;
+        }
+        .faq-icon-plus { display: block; }
+        .faq-icon-minus { display: none; }
+        .faq-toggle:checked ~ label .faq-icon-plus { display: none; }
+        .faq-toggle:checked ~ label .faq-icon-minus { display: block; }
+
+        /* ── Timeline connector (desktop) ── */
+        @media (min-width: 1024px) {
+            .timeline-grid::before {
+                content: '';
+                position: absolute;
+                top: 28px;
+                left: calc(12.5% + 20px);
+                right: calc(12.5% + 20px);
+                height: 2px;
+                border-top: 2px dashed #DA2128;
+            }
+        }
+
+        /* ── Slower marquee for clientele ── */
+        .marquee-slow .marquee-content {
+            animation-duration: 40s;
+        }
+
+        /* ── Institution text tiles ── */
+        .inst-tile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background: #00008C;
+            color: white;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            border-radius: 0.5rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ── CTA button hover polish ── */
+        .cta-btn {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ── Form input styling ── */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 0.75rem;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            font-size: 0.875rem;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+            outline: none;
+        }
+        .form-input::placeholder { color: rgba(255,255,255,0.4); }
+        .form-input:focus {
+            border-color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.12);
+        }
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 0.75rem;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            font-size: 0.875rem;
+            transition: border-color 0.2s ease;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+        .form-select:focus { border-color: rgba(255,255,255,0.5); }
+        .form-select option { background: #00008C; color: white; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-timesred selection:text-white">
 
-    <!-- Navigation Placeholder -->
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-display font-bold text-2xl text-timesdark tracking-tight">TimesPro <span class="text-timesred text-sm uppercase tracking-widest ml-1 font-semibold">Enterprise</span></span>
+<body class="font-body text-timesdark bg-white antialiased">
+
+    <!-- ════════════════════════════════════════════
+         NAVIGATION
+         ════════════════════════════════════════════ -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-timesslate/40">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+
+                <!-- Logo -->
+                <a href="#" class="flex items-baseline gap-1.5 shrink-0">
+                    <span class="font-heading font-extrabold text-xl lg:text-2xl text-timesdark tracking-tight">TimesPro</span>
+                    <span class="text-[10px] lg:text-xs font-semibold uppercase tracking-[0.15em] text-timesred">Enterprise</span>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#solutions" class="text-sm font-medium text-timesdark/70 hover:text-timesnavy transition-colors duration-200">Solutions</a>
+                    <a href="#process" class="text-sm font-medium text-timesdark/70 hover:text-timesnavy transition-colors duration-200">Our Process</a>
+                    <a href="#why-timespro" class="text-sm font-medium text-timesdark/70 hover:text-timesnavy transition-colors duration-200">Why TimesPro</a>
+                    <a href="#partners" class="text-sm font-medium text-timesdark/70 hover:text-timesnavy transition-colors duration-200">Academic Partners</a>
+                    <a href="#contact" class="inline-flex items-center px-6 py-2.5 bg-timesred text-white text-sm font-semibold rounded-full hover:bg-red-700 transition-colors duration-200 shadow-lg shadow-timesred/20">
+                        Talk to Our Team
+                    </a>
                 </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#solutions" class="text-sm font-medium text-gray-600 hover:text-timesred transition-colors">Solutions</a>
-                    <a href="#ecosystem" class="text-sm font-medium text-gray-600 hover:text-timesred transition-colors">Framework</a>
-                    <a href="#serve" class="text-sm font-medium text-gray-600 hover:text-timesred transition-colors">Who We Serve</a>
-                    <button class="bg-timesred hover:bg-[#b81b21] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-timesred/30">
-                        Talk to Team
-                    </button>
+
+                <!-- Mobile: Hamburger Toggle -->
+                <input type="checkbox" id="nav-toggle" class="sr-only peer" />
+                <label for="nav-toggle" class="lg:hidden cursor-pointer p-2 -mr-2 relative z-50" aria-label="Toggle navigation">
+                    <div class="hamburger flex flex-col gap-[6px] w-6">
+                        <span class="block h-[2px] w-full bg-timesdark rounded-full origin-center"></span>
+                        <span class="block h-[2px] w-full bg-timesdark rounded-full"></span>
+                        <span class="block h-[2px] w-full bg-timesdark rounded-full origin-center"></span>
+                    </div>
+                </label>
+
+                <!-- Mobile Menu -->
+                <div class="mobile-menu absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-timesslate/30 shadow-xl lg:hidden">
+                    <div class="flex flex-col px-6 py-6 gap-4">
+                        <a href="#solutions" class="text-base font-medium text-timesdark/80 hover:text-timesnavy py-2 border-b border-timesslate/20">Solutions</a>
+                        <a href="#process" class="text-base font-medium text-timesdark/80 hover:text-timesnavy py-2 border-b border-timesslate/20">Our Process</a>
+                        <a href="#why-timespro" class="text-base font-medium text-timesdark/80 hover:text-timesnavy py-2 border-b border-timesslate/20">Why TimesPro</a>
+                        <a href="#partners" class="text-base font-medium text-timesdark/80 hover:text-timesnavy py-2 border-b border-timesslate/20">Academic Partners</a>
+                        <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 bg-timesred text-white text-sm font-semibold rounded-full mt-2">
+                            Talk to Our Team
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
+
+    <!-- ════════════════════════════════════════════
+         HERO — BENTO BOX LAYOUT
+         ════════════════════════════════════════════ -->
     <main>
-        <!-- HERO SECTION (BENTO BOX LAYOUT) -->
-        <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-            <div class="absolute inset-0 bg-grid-pattern opacity-60 z-[-1]"></div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                <!-- Large Main Callout Box -->
-                <div class="bento-card lg:col-span-8 flex flex-col justify-center bg-white/90 backdrop-blur-sm border-l-4 border-l-timesred">
-                    <div class="inline-flex items-center space-x-2 text-timesred font-semibold tracking-wide text-sm mb-6 uppercase">
-                        <span class="w-8 h-px bg-timesred"></span>
-                        <span>Enterprise Learning</span>
-                    </div>
-                    <h1 class="font-display text-5xl lg:text-7xl font-bold tracking-tight text-timesdark leading-[1.1] mb-6">
-                        Build Organisations That <span class="text-gradient">Learn Faster</span> Than the World Changes.
-                    </h1>
-                    
-                    <!-- Morphing CTA Container -->
-                    <div id="cta-container" class="relative transition-all duration-500 min-h-[64px] rounded-xl overflow-hidden mt-4">
-                        <!-- Initial Buttons -->
-                        <div id="cta-buttons" class="flex flex-col sm:flex-row gap-4 absolute inset-0 transition-opacity duration-300">
-                            <button id="talk-team-btn" class="bg-timesnavy hover:bg-[#000066] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg transform hover:-translate-y-1">
+        <section id="hero" class="pt-24 lg:pt-32 pb-16 lg:pb-24 bg-grid-pattern">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
+
+                    <!-- ── Box 1: Main Hero Copy (col-span-8) ── -->
+                    <div class="lg:col-span-8 bento-card border-l-4 border-l-timesred flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+
+                        <!-- Label -->
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">Enterprise Learning</span>
+                        </div>
+
+                        <!-- Headline -->
+                        <h1 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight lg:leading-[1.15] text-timesdark mb-5">
+                            Your Organisation Is Growing.<br class="hidden sm:block" />
+                            <span class="text-gradient">Is Your Leadership Keeping Up?</span>
+                        </h1>
+
+                        <!-- Subtext -->
+                        <p class="text-base sm:text-lg text-timesdark/65 leading-relaxed max-w-2xl mb-8">
+                            TimesPro partners with India's leading enterprises to build leadership pipelines, develop high-potential talent, and deliver learning programmes backed by IIMs, IITs, and global institutions — designed around your business, not someone else's curriculum.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
+                            <a href="#contact" class="inline-flex items-center justify-center px-7 py-3.5 bg-timesnavy text-white text-sm font-semibold rounded-xl hover:bg-blue-900 transition-colors duration-200 shadow-lg shadow-timesnavy/15">
                                 Talk to Our Enterprise Team
-                            </button>
-                            <button class="bg-white border-2 border-timesslate hover:border-timesnavy text-timesnavy px-8 py-4 rounded-xl text-lg font-semibold transition-all">
+                            </a>
+                            <a href="#solutions" class="inline-flex items-center justify-center px-7 py-3.5 bg-white text-timesnavy text-sm font-semibold rounded-xl border-2 border-timesnavy/20 hover:border-timesnavy/50 transition-colors duration-200">
                                 Explore Solutions
-                            </button>
+                            </a>
                         </div>
 
-                        <!-- Morphed Form (Hidden initially) -->
-                        <div id="cta-form" class="bg-white border border-gray-100 rounded-xl p-6 shadow-2xl opacity-0 invisible absolute inset-0 transition-opacity duration-300 pointer-events-none">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="font-display font-bold text-lg text-timesdark">Let's build capability that lasts</h3>
-                                <button id="close-form-btn" class="text-gray-400 hover:text-timesred transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                </button>
+                        <!-- Trust Line -->
+                        <p class="text-xs sm:text-sm text-timesdark/45 font-medium">
+                            Trusted by 200+ organisations across BFSI, IT, Manufacturing, Pharma, and more.
+                        </p>
+                    </div>
+
+                    <!-- ── Box 2: Partner Institutions Stat (col-span-4) ── -->
+                    <div class="lg:col-span-4 hero-image-box bento-card bg-timesnavy relative min-h-[280px] lg:min-h-0 flex flex-col justify-end p-6 sm:p-8 rounded-3xl overflow-hidden" style="border-color: transparent;">
+                        <!-- Background Image -->
+                        <img
+                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600&h=400"
+                            alt="Team collaborating"
+                            class="absolute inset-0 w-full h-full object-cover opacity-20"
+                            loading="lazy"
+                        />
+                        <!-- Content (above overlay) -->
+                        <div class="relative z-10">
+                            <span class="stat-value font-heading font-extrabold text-5xl sm:text-6xl text-white block mb-1">50+</span>
+                            <span class="text-white/90 font-semibold text-base mb-2 block">Partner Institutions</span>
+                            <p class="text-white/60 text-sm leading-relaxed">
+                                Access to premier academic programmes from IIMs, IITs &amp; Ivy League institutions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ── Box 3: Learners Impacted (col-span-4) ── -->
+                    <div class="lg:col-span-4 bento-card bg-timesred flex flex-col justify-center p-6 sm:p-8 rounded-3xl" style="border-color: transparent;">
+                        <span class="stat-value font-heading font-extrabold text-5xl sm:text-6xl text-white block mb-1">1,00,000+</span>
+                        <span class="text-white/90 font-semibold text-base block">Learners Impacted</span>
+                    </div>
+
+                    <!-- ── Box 4: Legacy Message (col-span-8) ── -->
+                    <div class="lg:col-span-8 bento-card flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+                        <p class="font-heading font-bold text-lg sm:text-xl lg:text-2xl text-timesdark leading-snug">
+                            Where India's Most Trusted Media Legacy Meets the Future of Learning.
+                        </p>
+                        <p class="text-sm sm:text-base text-timesdark/55 leading-relaxed mt-3 max-w-2xl">
+                            Backed by 188 years of Times Group legacy — we bring institutional weight, academic rigour, technology, and scale to build capability that lasts.
+                        </p>
+                    </div>
+
+                </div><!-- /grid -->
+            </div><!-- /container -->
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             SECTION 2 — THE PROBLEM WE SEE
+             ════════════════════════════════════════════ -->
+        <section id="problem" class="py-16 lg:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">The Challenge</span>
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-timesdark leading-tight">
+                        The Leadership Gap Is Real.<br class="hidden sm:block" />
+                        And It's Costing You.
+                    </h2>
+                </div>
+
+                <!-- Persona Tiles Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+
+                    <!-- Tile 1: CHRO -->
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 p-6 lg:p-8 flex flex-col">
+                        <span class="inline-block self-start px-4 py-1.5 bg-timesnavy text-white text-[11px] font-semibold uppercase tracking-wider rounded-full mb-5">For CHROs &amp; CPOs</span>
+                        <h3 class="font-heading font-bold text-lg lg:text-xl text-timesdark mb-3 leading-snug">
+                            Your Leadership Pipeline Has Gaps You Can't Afford to Ignore
+                        </h3>
+                        <p class="text-sm text-timesdark/60 leading-relaxed mb-5 flex-grow">
+                            Only 1 in 5 organisations say they are truly effective at developing leaders across all levels. The pipeline gap isn't a future risk. It's a present reality.
+                        </p>
+                        <div class="bg-red-50 border border-red-100 rounded-xl px-4 py-3 mb-4">
+                            <p class="text-sm font-semibold text-timesred">New Hiring Cost &gt; Retention Cost</p>
+                        </div>
+                        <p class="text-[11px] text-timesdark/40 font-medium">Global Leadership Training Research, 2024–25</p>
+                    </div>
+
+                    <!-- Tile 2: L&D -->
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 p-6 lg:p-8 flex flex-col">
+                        <span class="inline-block self-start px-4 py-1.5 bg-timesred text-white text-[11px] font-semibold uppercase tracking-wider rounded-full mb-5">For Heads of L&amp;D &amp; CLOs</span>
+                        <h3 class="font-heading font-bold text-lg lg:text-xl text-timesdark mb-3 leading-snug">
+                            Your L&amp;D Programmes Are Running. But Are They Working?
+                        </h3>
+                        <p class="text-sm text-timesdark/60 leading-relaxed mb-5 flex-grow">
+                            Nearly half of all organisations are doubling down on leadership upskilling in 2025. The ones falling behind aren't spending less — they're designing wrong.
+                        </p>
+                        <p class="text-[11px] text-timesdark/40 font-medium">Harvard Business Publishing Global Leadership Development Study, 2025</p>
+                    </div>
+
+                    <!-- Tile 3: BU Head -->
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 p-6 lg:p-8 flex flex-col">
+                        <span class="inline-block self-start px-4 py-1.5 bg-timesnavy text-white text-[11px] font-semibold uppercase tracking-wider rounded-full mb-5">For BU Heads &amp; Functional Leaders</span>
+                        <h3 class="font-heading font-bold text-lg lg:text-xl text-timesdark mb-3 leading-snug">
+                            You're Promoting the Right People. But Are You Preparing Them to Lead?
+                        </h3>
+                        <p class="text-sm text-timesdark/60 leading-relaxed mb-5 flex-grow">
+                            6 in 10 managers step into leadership with zero training. Your strongest individual contributors are being set up to fail — unless you intervene early.
+                        </p>
+                        <p class="text-[11px] text-timesdark/40 font-medium">Quarterdeck Leadership Training Statistics, 2025</p>
+                    </div>
+
+                </div><!-- /grid -->
+
+                <!-- Bottom CTA -->
+                <div class="text-center mt-10">
+                    <a href="#solutions" class="inline-flex items-center gap-1.5 text-sm font-semibold text-timesnavy hover:text-timesred transition-colors duration-200">
+                        See How TimesPro Can Help
+                        <span class="text-lg">→</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════
+             SECTION 3 — WHAT WE OFFER
+             ════════════════════════════════════════════ -->
+        <section id="solutions" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">Our Solutions</span>
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-timesdark leading-tight mb-4">
+                        Enterprise Learning, Built Around Your People and Your Goals
+                    </h2>
+                    <p class="text-base sm:text-lg text-timesdark/55 leading-relaxed">
+                        Whether you're building a leadership pipeline, upskilling your workforce, or looking for structured executive development — we have a solution designed for your specific need.
+                    </p>
+                </div>
+
+                <!-- Solution Cards Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-7">
+
+                    <!-- Card 1: Custom MDP -->
+                    <div class="bg-white border border-timesslate/40 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <!-- Accent Bar -->
+                        <div class="h-1.5 bg-timesnavy"></div>
+                        <div class="p-6 lg:p-8 flex flex-col flex-grow">
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-timesdark/40 mb-3">CHRO / CPO / Senior HR Leadership</span>
+                            <h3 class="font-heading font-bold text-xl lg:text-2xl text-timesdark mb-5 leading-snug">Custom Management Development Programme</h3>
+
+                            <!-- Stat Callout -->
+                            <div class="bg-blue-50 border border-blue-100 rounded-xl px-5 py-4 mb-5">
+                                <p class="text-sm text-timesnavy leading-relaxed">
+                                    <strong>60%</strong> of organisations that upskilled with TimesPro reported measurable growth.
+                                    <strong>70%</strong> reported stronger team management.
+                                    <strong>16%</strong> reported smoother leadership successions.
+                                </p>
                             </div>
-                            <form class="space-y-4">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input type="text" placeholder="Full Name" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
-                                    <input type="text" placeholder="Designation" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input type="text" placeholder="Company" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
-                                    <select class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none text-gray-500">
-                                        <option value="" disabled selected>Company Size</option>
-                                        <option value="1-50">1-50 Employees</option>
-                                        <option value="51-500">51-500 Employees</option>
-                                        <option value="500+">500+ Employees</option>
-                                    </select>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input type="email" placeholder="Work Email" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
-                                    <input type="tel" placeholder="Phone Number" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none">
-                                </div>
-                                <select class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-timesred focus:border-transparent outline-none text-gray-500 mb-2">
-                                    <option value="" disabled selected>Interested Product</option>
-                                    <option value="Executive Education">Executive Education</option>
-                                    <option value="Technology & AI">Technology & AI</option>
-                                    <option value="Soft Skills & Sales">Soft Skills & Sales</option>
-                                    <option value="Leadership Academy">Leadership Academy</option>
-                                    <option value="Digital eContent">Digital eContent</option>
-                                    <option value="Signature Programmes">Signature Programmes</option>
-                                </select>
-                                <button type="button" class="w-full bg-timesred hover:bg-[#b81b21] text-white py-3 rounded-lg font-semibold transition-colors">Submit Request</button>
-                            </form>
+
+                            <!-- Positioning Line -->
+                            <p class="text-sm italic text-timesdark/50 mb-5 leading-relaxed">
+                                Build the Leadership Pipeline Your Organisation Needs — Not a Generic One
+                            </p>
+
+                            <!-- Features List -->
+                            <ul class="space-y-3 mb-6 flex-grow">
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    Fully customised programme design aligned to your succession and capability goals
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    Delivered in partnership with premier institutions — IIMs, IITs, and global universities
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    Covers leadership mindset, strategic thinking, stakeholder management, and decision-making
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    Flexible formats: campus immersion, blended, or fully online
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    Includes assessments, coaching, and capstone projects for measurable outcomes
+                                </li>
+                            </ul>
+
+                            <!-- CTA -->
+                            <a href="#contact" class="inline-flex items-center justify-center w-full px-6 py-3 bg-timesnavy text-white text-sm font-semibold rounded-lg hover:bg-blue-900 transition-colors duration-200">
+                                Request MDP Details
+                            </a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Secondary Stat Box 1 with Image Placeholder-->
-                <div class="bento-card lg:col-span-4 bg-gradient-to-br from-timesnavy to-[#000066] text-white flex flex-col justify-between relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600&h=400" alt="Students collaborating" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay">
-                    <div class="relative z-10">
-                        <div class="text-timesslate mb-2 text-sm font-medium">Global Network</div>
-                        <h3 class="text-3xl font-display font-bold">50+ Partner<br>Institutions</h3>
-                    </div>
-                    <p class="text-sm mt-8 opacity-80 leading-relaxed">
-                        Access to premier academic programmes from IIMs, IITs & Ivy League institutions.
-                    </p>
-                </div>
+                    <!-- Card 2: Bespoke Learning -->
+                    <div class="bg-white border border-timesslate/40 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <!-- Accent Bar -->
+                        <div class="h-1.5 bg-timesred"></div>
+                        <div class="p-6 lg:p-8 flex flex-col flex-grow">
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-timesdark/40 mb-3">Head L&amp;D / CLO / Head OD</span>
+                            <h3 class="font-heading font-bold text-xl lg:text-2xl text-timesdark mb-5 leading-snug">Bespoke Learning Solutions</h3>
 
-                <!-- Secondary Stat Box 2 -->
-                <div class="bento-card lg:col-span-4 bg-timesred text-white flex flex-col justify-between hidden lg:flex">
-                     <div>
-                        <div class="text-white/80 mb-2 text-sm font-medium">Scale & Reach</div>
-                        <h3 class="text-4xl font-display font-bold">1,00,000+</h3>
-                        <div class="text-xl font-medium mt-1">Learners Impacted</div>
+                            <!-- Stat Callout -->
+                            <div class="bg-red-50 border border-red-100 rounded-xl px-5 py-4 mb-5">
+                                <p class="text-sm text-timesred leading-relaxed">
+                                    <strong>84%</strong> of learners said they could apply their learning on the job immediately.
+                                    Across <strong>6,680 batches</strong> delivered, our programmes average a <strong>4.7/5</strong> feedback score.
+                                </p>
+                            </div>
+
+                            <!-- Positioning Line -->
+                            <p class="text-sm italic text-timesdark/50 mb-5 leading-relaxed">
+                                Your Organisation Has Specific Challenges. Your Learning Solution Should Too.
+                            </p>
+
+                            <!-- Features List -->
+                            <ul class="space-y-3 mb-6 flex-grow">
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesred mt-0.5 shrink-0">✓</span>
+                                    Custom-built interventions from scratch — no off-the-shelf content
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesred mt-0.5 shrink-0">✓</span>
+                                    Covers the full learning journey: diagnosis, design, delivery, and ROI measurement
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesred mt-0.5 shrink-0">✓</span>
+                                    Designed by seasoned instructional architects and L&amp;D specialists
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesred mt-0.5 shrink-0">✓</span>
+                                    Scalable across large, geographically dispersed teams
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesred mt-0.5 shrink-0">✓</span>
+                                    Delivery modes: ILT, VILT, eLearning, blended, or hybrid
+                                </li>
+                            </ul>
+
+                            <!-- CTA -->
+                            <a href="#contact" class="inline-flex items-center justify-center w-full px-6 py-3 bg-timesred text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-colors duration-200">
+                                Request Bespoke Programme Details
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                 <!-- Secondary Info Box -->
-                <div class="bento-card lg:col-span-8 bg-white/90 backdrop-blur-sm flex items-center">
-                    <p class="text-xl text-gray-600 font-medium leading-relaxed">
-                        Where India's Most Trusted Media Legacy Meets the Future of Learning. We bring institutional weight, combining academic rigour, technology, and scale to help organisations build capability that lasts.
-                    </p>
-                </div>
+
+                    <!-- Card 3: Executive Education -->
+                    <div class="bg-white border border-timesslate/40 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <!-- Accent Bar -->
+                        <div class="h-1.5 bg-timesnavy"></div>
+                        <div class="p-6 lg:p-8 flex flex-col flex-grow">
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-timesdark/40 mb-3">VP / Director / GM / Business Head</span>
+                            <h3 class="font-heading font-bold text-xl lg:text-2xl text-timesdark mb-5 leading-snug">Executive Education at Work</h3>
+
+                            <!-- Stat Callout -->
+                            <div class="bg-blue-50 border border-blue-100 rounded-xl px-5 py-4 mb-5">
+                                <p class="text-sm text-timesnavy leading-relaxed">
+                                    <strong>82%</strong> of learners reported career growth.
+                                    <strong>22%</strong> moved into higher responsibilities.
+                                    <strong>1,67,000+</strong> learners trained and counting.
+                                </p>
+                            </div>
+
+                            <!-- Positioning Line -->
+                            <p class="text-sm italic text-timesdark/50 mb-5 leading-relaxed">
+                                Give Your Team the Credentials and Capabilities to Lead at the Next Level
+                            </p>
+
+                            <!-- Features List -->
+                            <ul class="space-y-3 mb-6 flex-grow">
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    200+ structured programmes from 50+ IIMs, IITs, XLRI, and Ivy League institutions
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    Group nomination model — consistent learning outcomes across your cohort
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    Covers Leadership, General Management, Finance, Marketing, Strategy, and more
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    Blended delivery with live sessions, case studies, and peer learning
+                                </li>
+                                <li class="flex items-start gap-2.5 text-sm text-timesdark/65 leading-relaxed">
+                                    <span class="text-timesnavy mt-0.5 shrink-0">✓</span>
+                                    End-to-end enrolment support, learner tracking, and completion assurance
+                                </li>
+                            </ul>
+
+                            <!-- CTA -->
+                            <a href="#contact" class="inline-flex items-center justify-center w-full px-6 py-3 bg-timesnavy text-white text-sm font-semibold rounded-lg hover:bg-blue-900 transition-colors duration-200">
+                                Explore Executive Education Programmes
+                            </a>
+                        </div>
+                    </div>
+
+                </div><!-- /grid -->
             </div>
         </section>
 
-        <!-- CLIENTELE HIGHLIGHT -->
-        <section class="py-12 border-y border-gray-100 bg-white">
+
+        <!-- ════════════════════════════════════════════
+             SECTION 4 — HOW IT WORKS
+             ════════════════════════════════════════════ -->
+        <section id="process" class="py-16 lg:py-24 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-8">Trusted by 200+ leading organisations across India</p>
-                
-                <div class="marquee-container relative overflow-hidden py-4">
-                    <div class="marquee-content flex space-x-16 items-center min-w-max">
-                        <!-- Logos populated from AWS bucket - Scaled Up -->
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/YES_BANK_Logo_1_76f6e0c03a.svg" alt="Yes Bank" class="h-16 lg:h-20 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_DCB_Bank_2c3f1915da.svg" alt="DCB Bank" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Nagpur_dfcdafbff6.svg" alt="IIM Nagpur" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Jammu_192cf2aa34.svg" alt="IIM Jammu" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Kashipur_34eb39b470.svg" alt="IIM Kashipur" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIT_Guwahati_c116ca417f.svg" alt="IIT Guwahati" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_MICA_2f3f151fe0.svg" alt="MICA" class="h-16 lg:h-20 w-auto marquee-item">
-                        
-                        <!-- Duplicate set for seamless scrolling -->
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/YES_BANK_Logo_1_76f6e0c03a.svg" alt="Yes Bank" class="h-16 lg:h-20 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_DCB_Bank_2c3f1915da.svg" alt="DCB Bank" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Nagpur_dfcdafbff6.svg" alt="IIM Nagpur" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Jammu_192cf2aa34.svg" alt="IIM Jammu" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIM_Kashipur_34eb39b470.svg" alt="IIM Kashipur" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_IIT_Guwahati_c116ca417f.svg" alt="IIT Guwahati" class="h-20 lg:h-24 w-auto marquee-item">
-                        <img src="https://timesproweb-static-backend-prod.s3.ap-south-1.amazonaws.com/Logo_MICA_2f3f151fe0.svg" alt="MICA" class="h-16 lg:h-20 w-auto marquee-item">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">Our Process</span>
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
                     </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-timesdark leading-tight">
+                        A Structured Engagement.<br class="hidden sm:block" />
+                        From Day One to Measurable Outcomes.
+                    </h2>
                 </div>
+
+                <!-- Timeline Grid -->
+                <div class="timeline-grid relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-timesred text-white flex items-center justify-center font-heading font-extrabold text-xl mb-5 relative z-10 shadow-lg shadow-timesred/20">1</div>
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Consult</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">We start by understanding your organisation's goals, workforce challenges, and learning gaps — not by pitching a product.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-timesred text-white flex items-center justify-center font-heading font-extrabold text-xl mb-5 relative z-10 shadow-lg shadow-timesred/20">2</div>
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Design</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">Our instructional architects and L&amp;D specialists co-create a learning solution aligned to your business context, culture, and target outcomes.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-timesred text-white flex items-center justify-center font-heading font-extrabold text-xl mb-5 relative z-10 shadow-lg shadow-timesred/20">3</div>
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Deliver</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">Seamless execution across formats — classroom, virtual, blended, or hybrid — with dedicated programme management from our side.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-timesred text-white flex items-center justify-center font-heading font-extrabold text-xl mb-5 relative z-10 shadow-lg shadow-timesred/20">4</div>
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Measure</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">Impact-first reporting with customised ROI frameworks, learner analytics, and progress dashboards to demonstrate transformation.</p>
+                    </div>
+
+                </div><!-- /timeline -->
             </div>
         </section>
 
-        <!-- SECTION 1: WHY TIMESPRO -->
-        <section class="py-24 bg-white relative overflow-hidden">
-            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-timesred/5 rounded-full blur-3xl z-0"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <h2 class="text-4xl md:text-5xl font-display font-bold text-timesdark mb-6 leading-tight">
-                            Where India's Most Trusted Media Legacy Meets the Future of Learning
-                        </h2>
-                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                            TimesPro is a Times Group initiative &mdash; backed by India's largest media conglomerate with 188 years of legacy, 11,000+ employees, and $930M+ in annual revenue. We bring that institutional weight to enterprise learning, combining academic rigour, technology, and scale to help organisations build capability that lasts.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bento-card bg-gray-50 text-center border-none p-8">
-                            <div class="text-4xl font-display font-bold text-timesred mb-2 counter" data-target="100000">0</div>
-                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-widest">+ Learners Impacted</div>
-                        </div>
-                        <div class="bento-card bg-gray-50 text-center border-none p-8">
-                            <div class="text-4xl font-display font-bold text-timesnavy mb-2 counter" data-target="200">0</div>
-                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-widest">+ Programmes</div>
-                        </div>
-                        <div class="bento-card bg-gray-50 text-center border-none p-8">
-                            <div class="text-4xl font-display font-bold text-timesnavy mb-2 counter" data-target="50">0</div>
-                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-widest">+ Partner Institutions</div>
-                        </div>
-                        <div class="bento-card bg-gray-50 text-center border-none p-8">
-                            <div class="text-4xl font-display font-bold text-timesred mb-2 counter" data-target="25">0</div>
-                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-widest">+ Industries Served</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- SECTION 2: SOLUTIONS -->
-        <section id="solutions" class="py-24 bg-gray-50">
+        <!-- ════════════════════════════════════════════
+             SECTION 5 — WHY TIMESPRO
+             ════════════════════════════════════════════ -->
+        <section id="why-timespro" class="py-16 lg:py-24 bg-white" style="background: linear-gradient(180deg, rgba(214,214,231,0.08) 0%, white 100%);">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-timesred font-semibold tracking-widest text-sm uppercase mb-3 block">Our Solutions</span>
-                    <h2 class="text-4xl font-display font-bold text-timesdark mb-6">A Complete Learning Ecosystem, Built Around Your Talent Goals</h2>
-                    <p class="text-lg text-gray-600">From hiring to leadership, from compliance to transformation &mdash; TimesPro covers the full talent lifecycle with solutions that are structured where needed, and custom where it matters.</p>
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">The TimesPro Edge</span>
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-timesdark leading-tight">
+                        One Partner. Every Learning Need. Measurable Impact.
+                    </h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Solution 1 -->
-                    <div class="solution-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-timesnavy/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-                        <h3 class="text-2xl font-display font-bold text-timesdark mb-4">Executive Education</h3>
-                        <p class="text-gray-600 mb-6">Premier academic programmes from 50+ IIMs, IITs & Ivy League institutions &mdash; tailored for your workforce.</p>
-                        <button class="text-timesred font-semibold group-hover:text-timesnavy transition-colors inline-flex items-center">
-                            Explore Solution <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                    </div>
+                <!-- Tiles Grid: 3 + 2 centered -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
 
-                    <!-- Solution 2 -->
-                    <div class="solution-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-timesred/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-                        <h3 class="text-2xl font-display font-bold text-timesdark mb-4">Technology & AI</h3>
-                        <p class="text-gray-600 mb-6">From foundational tech skills to cutting-edge Generative AI &mdash; OEM-certified, custom-built, and always current.</p>
-                        <button class="text-timesred font-semibold group-hover:text-timesnavy transition-colors inline-flex items-center">
-                            Explore Solution <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                    </div>
-
-                    <!-- Solution 3 -->
-                    <div class="solution-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                         <div class="absolute top-0 right-0 w-32 h-32 bg-timesnavy/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-                        <h3 class="text-2xl font-display font-bold text-timesdark mb-4">Soft Skills & Sales</h3>
-                        <p class="text-gray-600 mb-6">Outcome-based learning journeys for professional effectiveness, sales performance, and industry readiness.</p>
-                        <button class="text-timesred font-semibold group-hover:text-timesnavy transition-colors inline-flex items-center">
-                            Explore Solution <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                    </div>
-
-                    <!-- Solution 4 -->
-                    <div class="solution-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-timesred/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-                        <h3 class="text-2xl font-display font-bold text-timesdark mb-4">Leadership Academy</h3>
-                        <p class="text-gray-600 mb-6">A structured system for developing leaders at every level &mdash; from high-potential managers to the boardroom.</p>
-                        <button class="text-timesred font-semibold group-hover:text-timesnavy transition-colors inline-flex items-center">
-                            Explore Solution <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                    </div>
-
-                    <!-- Solution 5 -->
-                    <div class="solution-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                         <div class="absolute top-0 right-0 w-32 h-32 bg-timesnavy/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-                        <h3 class="text-2xl font-display font-bold text-timesdark mb-4">Digital eContent</h3>
-                        <p class="text-gray-600 mb-6">10,000+ hours of custom content &mdash; from eLearning to AR/VR and immersive mobile experiences.</p>
-                        <button class="text-timesred font-semibold group-hover:text-timesnavy transition-colors inline-flex items-center">
-                            Explore Solution <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                    </div>
-
-                    <!-- Solution 6 -->
-                    <div class="solution-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-timesred/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-                        <h3 class="text-2xl font-display font-bold text-timesdark mb-4">Signature Programmes</h3>
-                        <p class="text-gray-600 mb-6">Proprietary, research-backed learning interventions designed around high-priority capability gaps.</p>
-                        <button class="text-timesred font-semibold group-hover:text-timesnavy transition-colors inline-flex items-center">
-                            Explore Solution <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Expanded Solution Modal/Panel Container (Hidden by default) -->
-                <div id="solution-modal" class="fixed inset-0 z-[100] bg-timesdark/80 backdrop-blur-sm hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-                    <div class="bg-white rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-transform duration-300" id="solution-modal-content">
-                        <!-- Content injected via JS -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- SECTION 3: WHO WE SERVE -->
-        <section id="serve" class="py-24 bg-timesnavy text-white relative overflow-hidden">
-             <!-- Background aesthetic -->
-            <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZiIiBmaWxsLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik0zNiAzNGwtNiA2LTYtNiA2LTZ6bTAtOEwzMCAyMGwtNiA2IDYgNnoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16">
-                    <span class="text-timesslate font-semibold tracking-widest text-sm uppercase mb-3 block">Who We Serve</span>
-                    <h2 class="text-4xl font-display font-bold mb-4">Empowering the Entire Enterprise</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- For Organisations -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-3xl p-10 border border-white/20 hover:bg-white/15 transition-colors">
-                        <div class="w-14 h-14 bg-timesred rounded-2xl flex items-center justify-center mb-8">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <!-- Tile 1 -->
+                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
+                            <span class="font-heading font-extrabold text-sm text-timesnavy">T1</span>
                         </div>
-                        <h3 class="text-2xl font-display font-bold mb-4">For Organisations</h3>
-                        <p class="text-white/80 leading-relaxed mb-6">
-                            Transform performance by building capability at scale. We partner with India's and the world's most respected institutions — IIMs, IITs, XLRI, SPJIMR, and global Ivy League universities — to bring world-class learning directly to your workforce.
-                        </p>
-                        <ul class="space-y-3 text-white/90 font-medium">
-                            <li class="flex items-center"><svg class="w-5 h-5 text-timesred mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-Linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Customised to your goals & industry</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-timesred mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-Linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Infrastructure for consistent scale</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-timesred mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-Linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Expert L&D pool & academic network</li>
-                        </ul>
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Institutional-Grade Partnerships</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">50+ academic partners including IIMs, IITs, XLRI, INSEAD, and NUS. Your employees learn from the best — and get the credentials to prove it.</p>
                     </div>
 
-                    <!-- For Corporate Learners -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-3xl p-10 border border-white/20 hover:bg-white/15 transition-colors">
-                         <div class="w-14 h-14 bg-timesslate text-timesnavy rounded-2xl flex items-center justify-center mb-8">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <!-- Tile 2 -->
+                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
+                            <span class="font-heading font-extrabold text-sm text-timesnavy">T2</span>
                         </div>
-                        <h3 class="text-2xl font-display font-bold mb-4">For Corporate Learners</h3>
-                        <p class="text-white/80 leading-relaxed mb-6">
-                            Direct access to reputed faculty from leading Indian and global institutions — without leaving your desk or disrupting your schedule. Learn from subject matter experts in the format that works best for you.
-                        </p>
-                        <ul class="space-y-3 text-white/90 font-medium">
-                            <li class="flex items-center"><svg class="w-5 h-5 text-timesslate mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-Linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Access to premium faculty domains</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-timesslate mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-Linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Live, interactive, up to 500 participants</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-timesslate mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-Linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Classroom, online, or blended options</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: LEARNING ECOSYSTEM MODEL -->
-        <section id="ecosystem" class="py-24 bg-white relative">
-            <div class="absolute inset-0 bg-timesslate/10 z-0"></div> <!-- subtle bg -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-timesred font-semibold tracking-widest text-sm uppercase mb-3 block">Our Framework</span>
-                    <h2 class="text-4xl font-display font-bold text-timesdark mb-6">A Proprietary Framework That Powers Impactful Outcomes</h2>
-                    <p class="text-lg text-gray-600 mb-8">Every engagement we deliver is underpinned by a structured Learning Ecosystem Model — seven interconnected pillars that ensure learning is not just delivered, but embedded.</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row gap-12 items-start">
-                    <!-- Sidebar Tabs -->
-                    <div class="w-full lg:w-1/3 flex flex-col space-y-2 sticky top-28" id="pillar-tabs">
-                        <!-- Iterated via JS for interactions, placing static placeholders here if JS fails-->
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Scale That Matches Yours</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">10,000+ empanelled facilitators, 1,000+ in-house trainers, and pan-India delivery capability. We train at the scale enterprise demands.</p>
                     </div>
 
-                    <!-- Content Area -->
-                    <div class="w-full lg:w-2/3 bg-gray-50 rounded-3xl p-8 lg:p-12 min-h-[400px] flex flex-col justify-center transition-all duration-300 border border-gray-100" id="pillar-content">
-                        <!-- Content dynamically injected here -->
+                    <!-- Tile 3 -->
+                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
+                            <span class="font-heading font-extrabold text-sm text-timesnavy">T3</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Programmes Designed for Impact, Not Activity</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">Every learning journey is mapped to business KPIs — leadership pipeline goals, sales productivity, capability frameworks, or succession readiness.</p>
                     </div>
-                </div>
-                
-                <div class="mt-20 text-center max-w-4xl mx-auto px-6 py-8 bg-gradient-to-r from-gray-50 to-white border border-gray-100 rounded-2xl">
-                    <p class="text-xl font-medium text-timesdark italic">
-                        "Backed by 180 years of Times Group legacy and preferred by 200+ corporates — with trust, track record, and experience across 25+ industries."
+
+                    <!-- Tile 4 (centered row) -->
+                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300 lg:col-start-1 lg:col-end-2 sm:col-span-1 lg:ml-auto lg:mr-0" style="max-width: 100%;">
+                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
+                            <span class="font-heading font-extrabold text-sm text-timesnavy">T4</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">End-to-End Delivery. You Don't Have to Manage.</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">Dedicated account managers, programme success managers, and real-time learner dashboards. You focus on your business. We handle the rest.</p>
+                    </div>
+
+                    <!-- Tile 5 (centered row) -->
+                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
+                            <span class="font-heading font-extrabold text-sm text-timesnavy">T5</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Backed by 180 Years of the Times Group Legacy</h3>
+                        <p class="text-sm text-timesdark/55 leading-relaxed">Credibility, reach, and trust that only a Times of India Group initiative can bring to enterprise learning.</p>
+                    </div>
+
+                </div><!-- /tiles -->
+
+                <!-- Bottom Quote Block -->
+                <div class="mt-10 lg:mt-14 border border-timesslate/30 rounded-2xl p-8 lg:p-10 text-center" style="background: linear-gradient(180deg, #f9fafb 0%, white 100%);">
+                    <p class="font-heading font-bold text-lg sm:text-xl lg:text-2xl text-timesdark leading-snug max-w-3xl mx-auto">
+                        &ldquo;Backed by 180 years of Times Group legacy and preferred by 200+ corporates — with trust, track record, and experience across 25+ industries.&rdquo;
                     </p>
                 </div>
+
             </div>
         </section>
+
+
+        <!-- ════════════════════════════════════════════
+             SECTION 6 — ACADEMIC PARTNERS
+             ════════════════════════════════════════════ -->
+        <section id="academic-partners" class="py-16 lg:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">Our Academic Partners</span>
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-timesdark leading-tight mb-4">
+                        Learning Powered by India's — and the World's — Best Institutions
+                    </h2>
+                    <p class="text-base sm:text-lg text-timesdark/55 leading-relaxed">
+                        We partner exclusively with institutions recognised for academic rigour, industry relevance, and leadership in their domains.
+                    </p>
+                </div>
+
+                <!-- Logo Marquee -->
+                <div class="marquee-container h-20 mb-10">
+                    <div class="marquee-content">
+                        <!-- Set 1 -->
+                        <div class="marquee-item"><span class="inst-tile">IIM Calcutta</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Indore</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Lucknow</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Kozhikode</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Nagpur</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Kashipur</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIT Guwahati</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIT Delhi</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIT Roorkee</span></div>
+                        <div class="marquee-item"><span class="inst-tile">XLRI</span></div>
+                        <div class="marquee-item"><span class="inst-tile">MICA</span></div>
+                        <div class="marquee-item"><span class="inst-tile">INSEAD</span></div>
+                        <div class="marquee-item"><span class="inst-tile">NUS</span></div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="marquee-item"><span class="inst-tile">IIM Calcutta</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Indore</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Lucknow</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Kozhikode</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Nagpur</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIM Kashipur</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIT Guwahati</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIT Delhi</span></div>
+                        <div class="marquee-item"><span class="inst-tile">IIT Roorkee</span></div>
+                        <div class="marquee-item"><span class="inst-tile">XLRI</span></div>
+                        <div class="marquee-item"><span class="inst-tile">MICA</span></div>
+                        <div class="marquee-item"><span class="inst-tile">INSEAD</span></div>
+                        <div class="marquee-item"><span class="inst-tile">NUS</span></div>
+                    </div>
+                </div>
+
+                <!-- Stats Strip -->
+                <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+                        <div>
+                            <span class="font-heading font-extrabold text-2xl lg:text-3xl text-timesnavy block">50+</span>
+                            <span class="text-xs sm:text-sm text-timesdark/50 font-medium">Academic Partners</span>
+                        </div>
+                        <div>
+                            <span class="font-heading font-extrabold text-2xl lg:text-3xl text-timesnavy block">200+</span>
+                            <span class="text-xs sm:text-sm text-timesdark/50 font-medium">Programmes</span>
+                        </div>
+                        <div>
+                            <span class="font-heading font-extrabold text-2xl lg:text-3xl text-timesnavy block">1,00,000+</span>
+                            <span class="text-xs sm:text-sm text-timesdark/50 font-medium">Learners Trained Annually</span>
+                        </div>
+                        <div>
+                            <span class="font-heading font-extrabold text-2xl lg:text-3xl text-timesnavy block">25+</span>
+                            <span class="text-xs sm:text-sm text-timesdark/50 font-medium">Industries Served</span>
+                        </div>
+                        <div>
+                            <span class="font-heading font-extrabold text-2xl lg:text-3xl text-timesnavy block">14+</span>
+                            <span class="text-xs sm:text-sm text-timesdark/50 font-medium">Years of Enterprise Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════
+             SECTION 7 — CLIENTELE
+             ════════════════════════════════════════════ -->
+        <section id="clientele" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">Our Clientele</span>
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-timesdark leading-tight mb-4">
+                        Trusted by India's Leading Organisations
+                    </h2>
+                    <p class="text-base sm:text-lg text-timesdark/55 leading-relaxed">
+                        From Fortune 500s to fast-growing Indian enterprises — across BFSI, IT, Manufacturing, Pharma, and beyond.
+                    </p>
+                </div>
+
+                <!-- Client Logo Marquee (slower) -->
+                <div class="marquee-container marquee-slow h-16">
+                    <div class="marquee-content">
+                        <!-- Set 1 -->
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">YES Bank</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">DCB Bank</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Tata Motors</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Infosys</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Wipro</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">L&amp;T</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Cipla</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Sun Pharma</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">HDFC Bank</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Mahindra</span></div>
+                        <!-- Duplicate -->
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">YES Bank</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">DCB Bank</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Tata Motors</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Infosys</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Wipro</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">L&amp;T</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Cipla</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Sun Pharma</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">HDFC Bank</span></div>
+                        <div class="marquee-item"><span class="inst-tile bg-timesdark">Mahindra</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════
+             SECTION 8 — TESTIMONIALS (PLACEHOLDER)
+             ════════════════════════════════════════════ -->
+        <section id="testimonials" class="py-16 lg:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">Client Speak</span>
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-timesdark leading-tight">
+                        What Our Enterprise Partners Say
+                    </h2>
+                </div>
+
+                <!-- Testimonial Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-2xl border border-timesslate/30 p-6">
+                        <div class="aspect-video bg-gray-200 rounded-xl mb-5 flex items-center justify-center">
+                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <p class="text-sm italic text-timesdark/50 mb-3">— Rajesh Mehta, CHRO, Leading BFSI Conglomerate</p>
+                        <span class="inline-block px-3 py-1 bg-timesslate/30 text-[11px] font-semibold text-timesdark/50 rounded-full">Video Testimonial Coming Soon</span>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-2xl border border-timesslate/30 p-6">
+                        <div class="aspect-video bg-gray-200 rounded-xl mb-5 flex items-center justify-center">
+                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <p class="text-sm italic text-timesdark/50 mb-3">— Priya Sharma, Head L&amp;D, Top IT Services Company</p>
+                        <span class="inline-block px-3 py-1 bg-timesslate/30 text-[11px] font-semibold text-timesdark/50 rounded-full">Video Testimonial Coming Soon</span>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-2xl border border-timesslate/30 p-6">
+                        <div class="aspect-video bg-gray-200 rounded-xl mb-5 flex items-center justify-center">
+                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <p class="text-sm italic text-timesdark/50 mb-3">— Anand Verma, VP Operations, Leading Pharma Enterprise</p>
+                        <span class="inline-block px-3 py-1 bg-timesslate/30 text-[11px] font-semibold text-timesdark/50 rounded-full">Video Testimonial Coming Soon</span>
+                    </div>
+
+                </div><!-- /grid -->
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════
+             SECTION 9 — FAQs
+             ════════════════════════════════════════════ -->
+        <section id="faqs" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesred">Frequently Asked Questions</span>
+                        <span class="w-8 h-[3px] bg-timesred rounded-full"></span>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-timesdark leading-tight">
+                        Everything You Need to Know Before You Start
+                    </h2>
+                </div>
+
+                <!-- Accordion -->
+                <div class="divide-y divide-timesslate/30">
+
+                    <!-- FAQ 1 -->
+                    <div class="relative">
+                        <input type="checkbox" id="faq-1" class="faq-toggle" />
+                        <label for="faq-1" class="flex items-center justify-between gap-4 py-5 cursor-pointer group">
+                            <span class="font-heading font-semibold text-base text-timesdark group-hover:text-timesnavy transition-colors">Can programmes be fully customised to our organisation's context?</span>
+                            <span class="faq-icon-plus text-xl text-timesdark/40 shrink-0 font-light">+</span>
+                            <span class="faq-icon-minus text-xl text-timesred shrink-0 font-light">&minus;</span>
+                        </label>
+                        <div class="faq-answer text-sm text-timesdark/60 leading-relaxed">
+                            Yes. Every engagement begins with a thorough needs analysis — covering your business goals, workforce challenges, and capability gaps. The learning solution is built around your context, not adapted from a standard template.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="relative">
+                        <input type="checkbox" id="faq-2" class="faq-toggle" />
+                        <label for="faq-2" class="flex items-center justify-between gap-4 py-5 cursor-pointer group">
+                            <span class="font-heading font-semibold text-base text-timesdark group-hover:text-timesnavy transition-colors">What is the minimum team size for a corporate engagement?</span>
+                            <span class="faq-icon-plus text-xl text-timesdark/40 shrink-0 font-light">+</span>
+                            <span class="faq-icon-minus text-xl text-timesred shrink-0 font-light">&minus;</span>
+                        </label>
+                        <div class="faq-answer text-sm text-timesdark/60 leading-relaxed">
+                            We work with organisations of varying scales. Whether you're nominating a cohort of 15 or training 5,000 employees across locations, our delivery model is designed to scale with your requirement.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="relative">
+                        <input type="checkbox" id="faq-3" class="faq-toggle" />
+                        <label for="faq-3" class="flex items-center justify-between gap-4 py-5 cursor-pointer group">
+                            <span class="font-heading font-semibold text-base text-timesdark group-hover:text-timesnavy transition-colors">What delivery modes are available?</span>
+                            <span class="faq-icon-plus text-xl text-timesdark/40 shrink-0 font-light">+</span>
+                            <span class="faq-icon-minus text-xl text-timesred shrink-0 font-light">&minus;</span>
+                        </label>
+                        <div class="faq-answer text-sm text-timesdark/60 leading-relaxed">
+                            We offer instructor-led training (ILT), virtual instructor-led training (VILT), self-paced eLearning, blended formats, and hybrid delivery — depending on your workforce distribution and programme objectives.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="relative">
+                        <input type="checkbox" id="faq-4" class="faq-toggle" />
+                        <label for="faq-4" class="flex items-center justify-between gap-4 py-5 cursor-pointer group">
+                            <span class="font-heading font-semibold text-base text-timesdark group-hover:text-timesnavy transition-colors">How long does it take to design and launch a custom programme?</span>
+                            <span class="faq-icon-plus text-xl text-timesdark/40 shrink-0 font-light">+</span>
+                            <span class="faq-icon-minus text-xl text-timesred shrink-0 font-light">&minus;</span>
+                        </label>
+                        <div class="faq-answer text-sm text-timesdark/60 leading-relaxed">
+                            Timelines vary based on complexity, but our structured Consult → Design → Deliver → Measure process is built for speed without compromising quality.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="relative">
+                        <input type="checkbox" id="faq-5" class="faq-toggle" />
+                        <label for="faq-5" class="flex items-center justify-between gap-4 py-5 cursor-pointer group">
+                            <span class="font-heading font-semibold text-base text-timesdark group-hover:text-timesnavy transition-colors">How do you measure the impact of a learning programme?</span>
+                            <span class="faq-icon-plus text-xl text-timesdark/40 shrink-0 font-light">+</span>
+                            <span class="faq-icon-minus text-xl text-timesred shrink-0 font-light">&minus;</span>
+                        </label>
+                        <div class="faq-answer text-sm text-timesdark/60 leading-relaxed">
+                            We use customised ROI frameworks aligned to your business objectives — covering learner engagement, knowledge retention, behavioural change, and on-the-job impact. Kirkpatrick Level 1 through 4 assessments are available.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="relative">
+                        <input type="checkbox" id="faq-6" class="faq-toggle" />
+                        <label for="faq-6" class="flex items-center justify-between gap-4 py-5 cursor-pointer group">
+                            <span class="font-heading font-semibold text-base text-timesdark group-hover:text-timesnavy transition-colors">Which academic institutions will our employees receive certification from?</span>
+                            <span class="faq-icon-plus text-xl text-timesdark/40 shrink-0 font-light">+</span>
+                            <span class="faq-icon-minus text-xl text-timesred shrink-0 font-light">&minus;</span>
+                        </label>
+                        <div class="faq-answer text-sm text-timesdark/60 leading-relaxed">
+                            Depending on the programme selected, certifications are issued by IIMs, IITs, XLRI, SPJIMR, or global universities including INSEAD and NUS. All partnerships are exclusive and institutionally endorsed.
+                        </div>
+                    </div>
+
+                </div><!-- /accordion -->
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════
+             SECTION 10 — FINAL CTA / CONTACT FORM
+             ════════════════════════════════════════════ -->
+        <section id="contact" class="py-16 lg:py-24 bg-timesnavy">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <span class="w-8 h-[3px] bg-timesslate rounded-full"></span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-timesslate">Get Started</span>
+                        <span class="w-8 h-[3px] bg-timesslate rounded-full"></span>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white leading-tight mb-4">
+                        Now you know how your leadership could keep up &mdash; let&rsquo;s bring the thought to life.
+                    </h2>
+                    <p class="text-base sm:text-lg text-white/70 leading-relaxed">
+                        Tell us about your learning and development goals. Our enterprise team will map the right solution &mdash; whether it&rsquo;s a custom MDP, a bespoke learning journey, or a structured executive education programme for your leadership cohort.
+                    </p>
+                </div>
+
+                <!-- Contact Form -->
+                <form action="#" method="POST" class="max-w-3xl mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="full-name" class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Full Name</label>
+                            <input type="text" id="full-name" name="full_name" placeholder="Your full name" class="form-input" required />
+                        </div>
+                        <div>
+                            <label for="designation" class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Designation</label>
+                            <input type="text" id="designation" name="designation" placeholder="Your role / title" class="form-input" />
+                        </div>
+                        <div>
+                            <label for="company-name" class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Company Name</label>
+                            <input type="text" id="company-name" name="company_name" placeholder="Your organisation" class="form-input" required />
+                        </div>
+                        <div>
+                            <label for="company-size" class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Company Size</label>
+                            <select id="company-size" name="company_size" class="form-select" required>
+                                <option value="" disabled selected>Select company size</option>
+                                <option value="1-50">1–50 employees</option>
+                                <option value="51-200">51–200 employees</option>
+                                <option value="201-500">201–500 employees</option>
+                                <option value="500+">500+ employees</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="work-email" class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Work Email</label>
+                            <input type="email" id="work-email" name="work_email" placeholder="you@company.com" class="form-input" required />
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" class="form-input" />
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="interested-in" class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Interested In</label>
+                            <select id="interested-in" name="interested_in" class="form-select">
+                                <option value="" disabled selected>Select a solution</option>
+                                <option value="custom-mdp">Custom MDP</option>
+                                <option value="bespoke-learning">Bespoke Learning Solution</option>
+                                <option value="executive-education">Executive Education</option>
+                                <option value="not-sure">Not Sure Yet</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="message" class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Message / Learning Goals</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Tell us about your learning objectives, team size, timeline, or any specific requirements..." class="form-input resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="cta-btn w-full py-4 bg-white text-timesnavy font-heading font-bold text-base rounded-xl hover:bg-timesred hover:text-white transition-all duration-200 cursor-pointer">
+                        Request a Free Consultation
+                    </button>
+                    <p class="text-center text-xs text-white/40 mt-3">No commitment required. Our enterprise team will reach out within 24 hours.</p>
+                </form>
+
+                <!-- Reassurance Strip -->
+                <div class="max-w-3xl mx-auto mt-12 lg:mt-16">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-2">
+                                <span class="text-white text-lg">🏛</span>
+                            </div>
+                            <span class="font-heading font-bold text-lg text-white block">180+</span>
+                            <span class="text-xs text-white/50">Years of Times Group Legacy</span>
+                        </div>
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-2">
+                                <span class="text-white text-lg">🎓</span>
+                            </div>
+                            <span class="font-heading font-bold text-lg text-white block">50+</span>
+                            <span class="text-xs text-white/50">Academic Partners</span>
+                        </div>
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-2">
+                                <span class="text-white text-lg">🏢</span>
+                            </div>
+                            <span class="font-heading font-bold text-lg text-white block">200+</span>
+                            <span class="text-xs text-white/50">Enterprise Clients</span>
+                        </div>
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-2">
+                                <span class="text-white text-lg">👥</span>
+                            </div>
+                            <span class="font-heading font-bold text-lg text-white block">1,00,000+</span>
+                            <span class="text-xs text-white/50">Learners Trained</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-timesdark text-gray-300 py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-6 md:mb-0">
-                <span class="font-display font-bold text-2xl text-white tracking-tight">TimesPro <span class="text-timesred text-sm uppercase tracking-widest ml-1 font-semibold">Enterprise</span></span>
-                <p class="mt-2 text-sm text-gray-500">A Times Group Initiative. Transforming capabilities at scale.</p>
+
+    <!-- ════════════════════════════════════════════
+         FOOTER
+         ════════════════════════════════════════════ -->
+    <footer class="bg-timesdark border-t-2 border-timesred">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Top Row -->
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6 py-8 border-b border-white/10">
+                <!-- Logo -->
+                <a href="#" class="flex items-baseline gap-1.5 shrink-0">
+                    <span class="font-heading font-extrabold text-xl text-white tracking-tight">TimesPro</span>
+                    <span class="text-[10px] font-semibold uppercase tracking-[0.15em] text-timesred">Enterprise</span>
+                </a>
+
+                <!-- Nav Links -->
+                <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                    <a href="#solutions" class="text-sm text-white/50 hover:text-white transition-colors">Solutions</a>
+                    <a href="#process" class="text-sm text-white/50 hover:text-white transition-colors">Process</a>
+                    <a href="#why-timespro" class="text-sm text-white/50 hover:text-white transition-colors">Why Us</a>
+                    <a href="#academic-partners" class="text-sm text-white/50 hover:text-white transition-colors">Academic Partners</a>
+                    <a href="#contact" class="text-sm text-white/50 hover:text-white transition-colors">Contact</a>
+                </nav>
+
+                <!-- CTA -->
+                <a href="#contact" class="cta-btn inline-flex items-center px-6 py-2.5 bg-timesred text-white text-sm font-semibold rounded-full hover:bg-red-700 shadow-lg shadow-timesred/20">
+                    Talk to Our Team
+                </a>
             </div>
-            <div class="flex space-x-6">
-                <a href="#" class="hover:text-white transition-colors text-sm">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors text-sm">Terms of Service</a>
-                <a href="#" class="hover:text-white transition-colors text-sm">Contact Us</a>
+
+            <!-- Bottom Row -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
+                <p class="text-xs text-white/30">&copy; 2026 TimesPro. A Times Group Initiative. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Privacy Policy</a>
+                    <span class="text-white/15">&middot;</span>
+                    <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Terms of Service</a>
+                    <span class="text-white/15">&middot;</span>
+                    <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Contact Us</a>
+                </div>
             </div>
+
         </div>
     </footer>
 
-    <!-- Custom JS -->
-    <script src="script.js"></script>
 </body>
 </html>
