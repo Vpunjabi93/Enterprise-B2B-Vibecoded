@@ -184,9 +184,9 @@
             <div class="flex items-center justify-between h-16 lg:h-20">
 
                 <!-- Logo -->
-                <a href="#" class="flex items-baseline gap-1.5 shrink-0">
-                    <span class="font-heading font-extrabold text-xl lg:text-2xl text-timesdark tracking-tight">TimesPro</span>
-                    <span class="text-[10px] lg:text-xs font-semibold uppercase tracking-[0.15em] text-timesred">Enterprise</span>
+                <a href="#" class="flex items-center shrink-0">
+                    <img src="https://timespro.com/icons/Timespro_logo.svg" alt="TimesPro" class="h-9 w-auto" loading="lazy">
+                    <span class="ml-3 text-timesred text-xs font-bold uppercase tracking-widest border-l border-gray-200 pl-3">Enterprise</span>
                 </a>
 
                 <!-- Desktop Nav Links -->
@@ -236,7 +236,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
 
-                    <!-- ── Box 1: Main Hero Copy (col-span-8) ── -->
+                    <!-- ── Box 1: Main Hero Copy + Lead Form (col-span-8) ── -->
                     <div class="lg:col-span-8 bento-card border-l-4 border-l-timesred flex flex-col justify-center p-6 sm:p-8 lg:p-10">
 
                         <!-- Label -->
@@ -256,24 +256,34 @@
                             TimesPro partners with India's leading enterprises to build leadership pipelines, develop high-potential talent, and deliver learning programmes backed by IIMs, IITs, and global institutions — designed around your business, not someone else's curriculum.
                         </p>
 
-                        <!-- CTA Buttons -->
-                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
-                            <a href="#contact" class="cta-btn inline-flex items-center justify-center px-7 py-3.5 bg-timesnavy text-white text-sm font-semibold rounded-xl hover:bg-blue-900 transition-colors duration-200 shadow-lg shadow-timesnavy/15">
-                                Talk to Our Enterprise Team
-                            </a>
-                            <a href="#solutions" class="cta-btn inline-flex items-center justify-center px-7 py-3.5 bg-white text-timesnavy text-sm font-semibold rounded-xl border-2 border-timesnavy/20 hover:border-timesnavy/50 transition-colors duration-200">
-                                Explore Solutions
-                            </a>
-                        </div>
-
-                        <!-- Trust Line -->
-                        <p class="text-xs sm:text-sm text-timesdark/45 font-medium">
-                            Trusted by 200+ organisations across BFSI, IT, Manufacturing, Pharma, and more.
-                        </p>
+                        <!-- Compact Inline Lead Form -->
+                        <form action="#" method="POST" class="w-full max-w-xl">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <input type="text" name="full_name" placeholder="Full Name" class="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-timesred/20 focus:border-timesred transition-all" required />
+                                <input type="email" name="work_email" placeholder="Work Email" class="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-timesred/20 focus:border-timesred transition-all" required />
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <input type="text" name="company_name" placeholder="Company Name" class="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-timesred/20 focus:border-timesred transition-all" required />
+                                <input type="tel" name="phone" placeholder="Phone" class="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-timesred/20 focus:border-timesred transition-all" />
+                            </div>
+                            <div class="mb-4">
+                                <select name="interested_in" class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-timesred/20 focus:border-timesred appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1em_1em] bg-[right_1rem_center] bg-no-repeat transition-all" required>
+                                    <option value="" disabled selected>I'm looking for...</option>
+                                    <option value="custom-mdp">Custom Management Development Programme</option>
+                                    <option value="bespoke-learning">Bespoke Learning Solutions</option>
+                                    <option value="executive-education">Executive Education</option>
+                                    <option value="not-sure">Not Sure Yet</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-timesnavy text-white font-bold rounded-xl hover:bg-blue-900 transition-colors duration-200 shadow-lg shadow-timesnavy/15 cursor-pointer">
+                                Request a Free Consultation
+                            </button>
+                            <p class="text-[11px] text-gray-400 mt-2">No commitment required. Our team responds within 24 hours.</p>
+                        </form>
                     </div>
 
-                    <!-- ── Box 2: Partner Institutions Stat (col-span-4) ── -->
-                    <div class="lg:col-span-4 hero-image-box bento-card bg-timesnavy relative min-h-[280px] lg:min-h-0 flex flex-col justify-end p-6 sm:p-8 rounded-3xl overflow-hidden" style="border-color: transparent;">
+                    <!-- ── Box 2: Trust & Stats Stack (col-span-4) ── -->
+                    <div class="lg:col-span-4 hero-image-box bento-card bg-gradient-to-br from-timesnavy to-[#000066] relative min-h-[400px] lg:min-h-0 flex flex-col p-6 sm:p-8 rounded-3xl overflow-hidden" style="border-color: transparent;">
                         <!-- Background Image -->
                         <img
                             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600&h=400"
@@ -282,29 +292,32 @@
                             loading="lazy"
                         />
                         <!-- Content (above overlay) -->
-                        <div class="relative z-10">
-                            <span class="stat-value font-heading font-extrabold text-5xl sm:text-6xl text-white block mb-1">50+</span>
-                            <span class="text-white/90 font-semibold text-base mb-2 block">Partner Institutions</span>
-                            <p class="text-white/60 text-sm leading-relaxed">
-                                Access to premier academic programmes from IIMs, IITs &amp; Ivy League institutions.
-                            </p>
+                        <div class="relative z-10 h-full flex flex-col">
+                            <!-- Stats Stack -->
+                            <div class="flex-grow flex flex-col justify-center gap-6 py-4">
+                                <!-- Block 1 -->
+                                <div class="pb-6 border-b border-white/20">
+                                    <span class="font-heading font-bold text-3xl text-white block">1,00,000+</span>
+                                    <span class="text-white/70 text-sm">Learners Trained</span>
+                                </div>
+                                <!-- Block 2 -->
+                                <div class="pb-6 border-b border-white/20">
+                                    <span class="font-heading font-bold text-3xl text-white block">200+</span>
+                                    <span class="text-white/70 text-sm">Enterprise Clients</span>
+                                </div>
+                                <!-- Block 3 -->
+                                <div class="pb-2">
+                                    <span class="font-heading font-bold text-3xl text-white block">50+</span>
+                                    <span class="text-white/70 text-sm">Academic Partners — IIMs, IITs &amp; Global Universities</span>
+                                </div>
+                            </div>
+                            <!-- Trust Strip -->
+                            <div class="pt-4 border-t border-white/10 mt-auto">
+                                <p class="text-[10px] text-white/50 uppercase tracking-widest font-medium">
+                                    Trusted by BFSI &middot; IT &middot; Manufacturing &middot; Pharma &middot; Retail
+                                </p>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- ── Box 3: Learners Impacted (col-span-4) ── -->
-                    <div class="lg:col-span-4 bento-card bg-timesred flex flex-col justify-center p-6 sm:p-8 rounded-3xl" style="border-color: transparent;">
-                        <span class="stat-value font-heading font-extrabold text-5xl sm:text-6xl text-white block mb-1">1,00,000+</span>
-                        <span class="text-white/90 font-semibold text-base block">Learners Impacted</span>
-                    </div>
-
-                    <!-- ── Box 4: Legacy Message (col-span-8) ── -->
-                    <div class="lg:col-span-8 bento-card flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-                        <p class="font-heading font-bold text-lg sm:text-xl lg:text-2xl text-timesdark leading-snug">
-                            Where India's Most Trusted Media Legacy Meets the Future of Learning.
-                        </p>
-                        <p class="text-sm sm:text-base text-timesdark/55 leading-relaxed mt-3 max-w-2xl">
-                            Backed by 188 years of Times Group legacy — we bring institutional weight, academic rigour, technology, and scale to build capability that lasts.
-                        </p>
                     </div>
 
                 </div><!-- /grid -->
@@ -595,32 +608,44 @@
                 <!-- Timeline Grid -->
                 <div class="timeline-grid relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
 
-                    <!-- Step 1 -->
+                    <!-- Step 1: Consult -->
                     <div class="flex flex-col items-center text-center">
                         <div class="w-14 h-14 rounded-full bg-timesred text-white flex items-center justify-center font-heading font-extrabold text-xl mb-5 relative z-10 shadow-lg shadow-timesred/20">1</div>
+                        <svg class="w-8 h-8 text-timesred mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                        </svg>
                         <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Consult</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">We start by understanding your organisation's goals, workforce challenges, and learning gaps — not by pitching a product.</p>
+                        <p class="text-sm text-gray-500 leading-relaxed">We start by understanding your organisation's goals, workforce challenges, and learning gaps — not by pitching a product.</p>
                     </div>
 
-                    <!-- Step 2 -->
+                    <!-- Step 2: Design -->
                     <div class="flex flex-col items-center text-center">
                         <div class="w-14 h-14 rounded-full bg-timesred text-white flex items-center justify-center font-heading font-extrabold text-xl mb-5 relative z-10 shadow-lg shadow-timesred/20">2</div>
+                        <svg class="w-8 h-8 text-timesred mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                        </svg>
                         <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Design</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">Our instructional architects and L&amp;D specialists co-create a learning solution aligned to your business context, culture, and target outcomes.</p>
+                        <p class="text-sm text-gray-500 leading-relaxed">Our instructional architects and L&amp;D specialists co-create a learning solution aligned to your business context, culture, and target outcomes.</p>
                     </div>
 
-                    <!-- Step 3 -->
+                    <!-- Step 3: Deliver -->
                     <div class="flex flex-col items-center text-center">
                         <div class="w-14 h-14 rounded-full bg-timesred text-white flex items-center justify-center font-heading font-extrabold text-xl mb-5 relative z-10 shadow-lg shadow-timesred/20">3</div>
+                        <svg class="w-8 h-8 text-timesred mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                        </svg>
                         <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Deliver</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">Seamless execution across formats — classroom, virtual, blended, or hybrid — with dedicated programme management from our side.</p>
+                        <p class="text-sm text-gray-500 leading-relaxed">Seamless execution across formats — classroom, virtual, blended, or hybrid — with dedicated programme management from our side.</p>
                     </div>
 
-                    <!-- Step 4 -->
+                    <!-- Step 4: Measure -->
                     <div class="flex flex-col items-center text-center">
                         <div class="w-14 h-14 rounded-full bg-timesred text-white flex items-center justify-center font-heading font-extrabold text-xl mb-5 relative z-10 shadow-lg shadow-timesred/20">4</div>
+                        <svg class="w-8 h-8 text-timesred mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                        </svg>
                         <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Measure</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">Impact-first reporting with customised ROI frameworks, learner analytics, and progress dashboards to demonstrate transformation.</p>
+                        <p class="text-sm text-gray-500 leading-relaxed">Impact-first reporting with customised ROI frameworks, learner analytics, and progress dashboards to demonstrate transformation.</p>
                     </div>
 
                 </div><!-- /timeline -->
@@ -647,51 +672,51 @@
                 </div>
 
                 <!-- Tiles Grid: 3 + 2 centered -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8">
 
-                    <!-- Tile 1 -->
-                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
-                            <span class="font-heading font-extrabold text-sm text-timesnavy">T1</span>
+                    <!-- Tile 1: Institutional-Grade Partnerships -->
+                    <div class="sm:col-span-1 lg:col-span-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden bg-white flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&h=300" alt="Institutional-Grade Partnerships" class="w-full h-44 object-cover" loading="lazy">
+                        <div class="p-8">
+                            <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Institutional-Grade Partnerships</h3>
+                            <p class="text-sm text-timesdark/55 leading-relaxed">50+ academic partners including IIMs, IITs, XLRI, INSEAD, and NUS. Your employees learn from the best — and get the credentials to prove it.</p>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Institutional-Grade Partnerships</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">50+ academic partners including IIMs, IITs, XLRI, INSEAD, and NUS. Your employees learn from the best — and get the credentials to prove it.</p>
                     </div>
 
-                    <!-- Tile 2 -->
-                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
-                            <span class="font-heading font-extrabold text-sm text-timesnavy">T2</span>
+                    <!-- Tile 2: Scale That Matches Yours -->
+                    <div class="sm:col-span-1 lg:col-span-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden bg-white flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&h=300" alt="Scale That Matches Yours" class="w-full h-44 object-cover" loading="lazy">
+                        <div class="p-8">
+                            <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Scale That Matches Yours</h3>
+                            <p class="text-sm text-timesdark/55 leading-relaxed">10,000+ empanelled facilitators, 1,00,000+ in-house trainers, and pan-India delivery capability. We train at the scale enterprise demands.</p>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Scale That Matches Yours</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">10,000+ empanelled facilitators, 1,000+ in-house trainers, and pan-India delivery capability. We train at the scale enterprise demands.</p>
                     </div>
 
-                    <!-- Tile 3 -->
-                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
-                            <span class="font-heading font-extrabold text-sm text-timesnavy">T3</span>
+                    <!-- Tile 3: Programmes Designed for Impact -->
+                    <div class="sm:col-span-1 lg:col-span-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden bg-white flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=600&h=300" alt="Programmes Designed for Impact" class="w-full h-44 object-cover" loading="lazy">
+                        <div class="p-8">
+                            <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Programmes Designed for Impact, Not Activity</h3>
+                            <p class="text-sm text-timesdark/55 leading-relaxed">Every learning journey is mapped to business KPIs — leadership pipeline goals, sales productivity, capability frameworks, or succession readiness.</p>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Programmes Designed for Impact, Not Activity</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">Every learning journey is mapped to business KPIs — leadership pipeline goals, sales productivity, capability frameworks, or succession readiness.</p>
                     </div>
 
-                    <!-- Tile 4 (centered row) -->
-                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300 lg:col-start-1 lg:col-end-2 sm:col-span-1 lg:ml-auto lg:mr-0" style="max-width: 100%;">
-                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
-                            <span class="font-heading font-extrabold text-sm text-timesnavy">T4</span>
+                    <!-- Tile 4: End-to-End Delivery -->
+                    <div class="sm:col-span-1 lg:col-span-2 lg:col-start-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden bg-white flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&h=300" alt="End-to-End Delivery" class="w-full h-44 object-cover" loading="lazy">
+                        <div class="p-8">
+                            <h3 class="font-heading font-bold text-lg text-timesdark mb-2">End-to-End Delivery. You Don't Have to Manage.</h3>
+                            <p class="text-sm text-timesdark/55 leading-relaxed">Dedicated account managers, programme success managers, and real-time learner dashboards. You focus on your business. We handle the rest.</p>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">End-to-End Delivery. You Don't Have to Manage.</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">Dedicated account managers, programme success managers, and real-time learner dashboards. You focus on your business. We handle the rest.</p>
                     </div>
 
-                    <!-- Tile 5 (centered row) -->
-                    <div class="bg-white border border-timesslate/30 rounded-2xl p-6 lg:p-8 hover:shadow-xl transition-shadow duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-timesnavy/10 flex items-center justify-center mb-4">
-                            <span class="font-heading font-extrabold text-sm text-timesnavy">T5</span>
+                    <!-- Tile 5: Times Group Legacy -->
+                    <div class="sm:col-span-1 lg:col-span-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden bg-white flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&h=300" alt="Times Group Legacy" class="w-full h-44 object-cover" loading="lazy">
+                        <div class="p-8">
+                            <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Backed by 180 Years of the Times Group Legacy</h3>
+                            <p class="text-sm text-timesdark/55 leading-relaxed">Credibility, reach, and trust that only a Times of India Group initiative can bring to enterprise learning.</p>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-timesdark mb-2">Backed by 180 Years of the Times Group Legacy</h3>
-                        <p class="text-sm text-timesdark/55 leading-relaxed">Credibility, reach, and trust that only a Times of India Group initiative can bring to enterprise learning.</p>
                     </div>
 
                 </div><!-- /tiles -->
@@ -1128,9 +1153,9 @@
             <!-- Top Row -->
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6 py-8 border-b border-white/10">
                 <!-- Logo -->
-                <a href="#" class="flex items-baseline gap-1.5 shrink-0">
-                    <span class="font-heading font-extrabold text-xl text-white tracking-tight">TimesPro</span>
-                    <span class="text-[10px] font-semibold uppercase tracking-[0.15em] text-timesred">Enterprise</span>
+                <a href="#" class="flex items-center shrink-0">
+                    <img src="https://timespro.com/icons/Timespro_logo.svg" alt="TimesPro" class="h-8 w-auto" style="filter: brightness(0) invert(1);" loading="lazy">
+                    <span class="ml-3 text-timesred text-xs font-bold uppercase tracking-widest border-l border-white/20 pl-3">Enterprise</span>
                 </a>
 
                 <!-- Nav Links -->
